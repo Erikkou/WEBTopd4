@@ -1,4 +1,4 @@
-git clone [<repository-url>](https://github.com/Erikkou/WEBTopd4.git)
+git clone https://github.com/Erikkou/WEBTopd4.git
 
 composer install
 
