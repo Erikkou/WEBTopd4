@@ -1,14 +1,35 @@
+{# templates/customer/index.html.twig #}
 {% extends 'base.html.twig' %}
-{% block title %}Customers{% endblock %}
+
+{% block title %}Customer List{% endblock %}
 
 {% block body %}
-    <h1>List of Customers</h1>
-
-    <ul>
-        {% for customer in customers %}
-            <li>{{ customer.name }} </li>
-        {% else %}
-            <li>No customers found.</li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-5">
+        <h1 class="mb-4">Customers</h1>
+        <a href="{{ path('customer_new') }}">Add a new Customer</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>
+                        <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="btn btn-primary me-2">Edit</a>
+                        <form action="{{ path('customer_delete', {'id': customer.id}) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ customer.id) }}">
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
