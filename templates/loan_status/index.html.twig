@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Loan Statuses{% endblock %}
+
+{% block body %}
+    <h1>List of Loan Statuses</h1>
+
+    <ul>
+        {% for loanstatus in loanstatuses %}
+            <li>{{ loanstatus.status }} </li>
+        {% else %}
+            <li>No loan statuses found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
